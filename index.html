@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Form</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="p-5">
+
+    <!-- FORM -->
+    <h1 class="text-xl font-bold mb-3 ml-20">STUDENT FORM</h1>
+
+    <form id="studentForm" class="border border-gray-900 rounded-3xl p-4 w-fit">
+        <table>
+            <tr>
+                <td class="border p-2 font-bold">Name</td>
+                <td class="border p-2">
+                    <input type="text" id="name" class="border p-1" required />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="border p-2 font-bold">Age</td>
+                <td class="border p-2">
+                    <input type="number" id="age" class="border p-1" required />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="border p-2 font-bold">Gender</td>
+                <td class="border p-2">
+                    <label>
+                        <input type="radio" name="gender" value="Male" required /> Male
+                    </label>
+                    <label class="ml-2">
+                        <input type="radio" name="gender" value="Female" /> Female
+                    </label>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="border p-2 font-bold">Course</td>
+                <td class="border p-2">
+                    <select id="course" class="border p-1" required>
+                        <option value="">Select Course</option>
+                        <option>JavaScript</option>
+                        <option>Java</option>
+                        <option>AWS</option>
+                        <option>Ruby</option>
+                        <option>Selenium</option>
+                        <option>Python</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="border p-2 font-bold">E-mail</td>
+                <td class="border p-2">
+                    <input type="email" id="email" class="border p-1" required />
+                </td>
+            </tr>
+        </table>
+
+        <button
+            type="submit"
+            class="w-full bg-red-500 mt-3 p-2 font-bold rounded-3xl"
+        >
+            Save
+        </button>
+    </form>
+
+    <!-- TABLE -->
+    <div class="mt-10">
+        <table class="border border-gray-500">
+            <thead>
+                <tr class="border">
+                    <th class="border p-2">Name</th>
+                    <th class="border p-2">Age</th>
+                    <th class="border p-2">Course</th>
+                    <th class="border p-2">Gender</th>
+                    <th class="border p-2">Email</th>
+                    <th class="border p-2">Action</th>
+                </tr>
+            </thead>
+            <tbody id="tabledata"></tbody>
+        </table>
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+        const form = document.getElementById("studentForm");
+        const tableData = document.getElementById("tabledata");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const age = document.getElementById("age").value;
+            const course = document.getElementById("course").value;
+            const email = document.getElementById("email").value;
+            const gender = document.querySelector(
+                'input[name="gender"]:checked'
+            ).value;
+
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td class="border p-2">${name}</td>
+                <td class="border p-2">${age}</td>
+                <td class="border p-2">${course}</td>
+                <td class="border p-2">${gender}</td>
+                <td class="border p-2">${email}</td>
+                <td class="border p-2">
+                    <button class="bg-red-400 px-2" onclick="deleteRow(this)">
+                        Delete
+                    </button>
+                </td>
+            `;
+
+            tableData.appendChild(row);
+            form.reset();
+        });
+
+        function deleteRow(btn) {
+            btn.closest("tr").remove();
+        }
+    </script>
+
+</body>
+</html>
