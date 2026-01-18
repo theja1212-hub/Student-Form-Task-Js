@@ -99,7 +99,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 Your Name - THEJA NAVEEN S
 
-Project Link: (https://github.com/yourusername/student-form-task)
+Project Link: (https://theja1212-hub.github.io/Student-Form-Task-Js/)
 
 ## Acknowledgments
 
